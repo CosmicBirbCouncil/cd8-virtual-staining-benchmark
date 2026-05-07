@@ -1,0 +1,53 @@
+device: cuda
+
+epochs: 100
+
+precision:
+  mixed: true        # use autocast
+  amp_dtype: float16 # or bfloat16 if available
+
+logging:
+  log_every_n_steps: 25
+  log_first_step: true
+
+validation:
+  val_every_n_epochs: 5
+
+checkpoint:
+  dir: checkpoints_cd8_pos_dab
+  save_last: true
+  save_best: true
+  monitor: val_loss
+  mode: min
+
+diffusion:
+  timestep_sampling: v_prediction   # uniform | importance (later)
+  
+ema:
+  enabled: true
+  decay: 0.9999
+
+dataloader:
+  drop_last: false
+
+distributed: true
+
+lambda_dab: 0.05
+dab_pos_threshold: 0.05
+dab_sharpness: 40.0
+dab_use_hist: true
+dab_hist_bins: 16
+
+use_ema: true
+ema_decay: 0.999
+
+lr_scheduler:
+  type: cosine
+  t_max: 100
+  eta_min: 1.0e-6
+
+lambda_feat: 0.05
+hoptimus_model_name: "hf-hub:bioptimus/H-optimus-1"
+hoptimus_use_amp: true
+hoptimus_amp_dtype: "float16"
+hoptimus_resize_to: 224

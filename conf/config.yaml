@@ -1,0 +1,45 @@
+defaults:
+  - transform: default
+  - model: diffusion
+  - scheduler: ddim
+  - optimizer: adamw
+  - loss: mse
+  - trainer: default
+  - generate: default
+  - _self_
+
+data:
+  loader:
+    num_workers: 1
+    batch_size: 8
+    pin_memory: false
+    persistant_workers: false 
+  paths:
+    manifest_dir: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patch_512/
+    tile_manifest_path: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patch_512/T001_tiles.csv
+    # train_path: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patch_512/T001_tiles.csv
+    # valid_path: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patch_512/T007_tiles.csv
+    train_path: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patches_512_40x_cd8_pos_split_train.csv 
+    # train_path: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patches_512_40x_cd8_pos_split_train_subset_with_ssim.csv
+    valid_path: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patches_512_40x_cd8_pos_split_val.csv 
+  tile:
+    size: 256
+
+run:
+  seed: 42
+
+logging:
+  use_wandb: true
+  wandb_project: CD8-Unpaired-VS
+  wandb_entity: CosmicBirbCouncil
+  wandb_run_name: cd8-unpaired-vs-baseline_dab_ema
+  wandb_tags: ["cd8", "diffusion"]
+  wandb_watch_model: false
+
+
+
+hydra:
+  run:
+    dir: .
+  job:
+    chdir: false

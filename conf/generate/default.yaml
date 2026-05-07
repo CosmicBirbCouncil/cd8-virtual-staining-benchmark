@@ -1,0 +1,8 @@
+manifest_csv: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patches_512_40x_cd8_pos_split_test.csv 
+output_dir: checkpoints_cd8_pos/eval/
+output_manifest_csv: checkpoints_cd8_pos/eval/dab_eval_results.csv
+checkpoint_path: checkpoints_cd8_pos/best.pt
+num_inference_steps: 50
+device: cuda
+split: val
+distributed: true

@@ -1,0 +1,6 @@
+eval:
+  manifest_csv: /ix/rbao/shared/rbao_qug14_ngl18/cd8_manifests/patches_512_40x_cd8_pos_split_test.csv 
+  real_col: target_tile
+  fake_col: generated_tile
+  dab_thresh: 0.05
+  output_csv: checkpoints_cd8_pos/eval/dab_eval_results.csv
